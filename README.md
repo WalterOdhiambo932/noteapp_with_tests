@@ -1,4 +1,4 @@
-**Web Application Testing Project**
+**Notes Web Application Testing Project**
 This project demonstrates automated testing for a simple web application consisting of a React frontend and a Node.js backend API.
 
 **Project Overview**
