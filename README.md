@@ -113,9 +113,12 @@ Supertest: A library for testing HTTP servers, making it easy to send requests t
 **Robot Framework** is an open-source test and process automation framework used to automate repetitive and manual tasks, such as data input, application navigation, and data processing. It helps IT managers free up professionals from manual tasks and allocate them to more strategic projects
 
 **Cypress**: An all-in-one testing framework for end-to-end testing. Chosen for its developer-friendly API, real-time reloading, automatic waiting, and excellent debugging capabilities in the browser.
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Assumptions and Limitations**
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Assumptions and Limitations**------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 **Simple Authentication:** The backend uses a hardcoded username (user) and password (password) for login validation. There's no real user management or robust token validation.
 
 **In-Memory Data:** The backend stores item data in a simple JavaScript array. This means all data is lost when the backend server restarts. For persistent data, a database (e.g., MongoDB, PostgreSQL) would be required.
@@ -126,8 +129,7 @@ Supertest: A library for testing HTTP servers, making it easy to send requests t
 Single User Focus: The application is designed for a single user interaction for testing purposes; it's not multi-user aware beyond the basic login.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-"WALTER NOTES APP" INSTALLATION"
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"WALTER NOTES APP" INSTALLATION"-----------------------------------------------------------------------------------------------------------------------------------
 
 
 a) SERVER SIDE(BACKEND)
