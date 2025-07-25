@@ -56,7 +56,7 @@ Asserting validation messages for missing input during creation/editing.
 
 Asserting the initial state (empty list) and post-deletion state.
 
-**API Test Automation:**
+**API Test Automation:**(19 Tests)
 
 Authentication (POST /login):
 
@@ -67,10 +67,6 @@ Negative: Failed login with invalid/missing credentials.
 Items Retrieval (GET /items, GET /items/:id):
 
 Positive: Fetching all items.
-
-Positive: Fetching a specific item by ID.
-
-Negative: Attempting to fetch a non-existent item.
 
 Item Creation (POST /items):
 
@@ -139,7 +135,8 @@ a) SERVER SIDE(BACKEND)
 -open the server in an IDE like Vscode
 -run on terminal on the directory of the file using "node server.js"
 -the server will start running on "http://localhost:3001"
-----------------------------------------------
+
+
 b)FRONT END
 -extract folder for walter_notes_app_frontend
 -open the file on a IDE
