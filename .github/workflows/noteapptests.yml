@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - master
+      - master # Include master if you still use it for older branches
       - develop
   pull_request:
     branches:
@@ -14,86 +14,85 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Recommended for Node.js, Python, and browser-based tests
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # Clones your entire repository into the runner's workspace
 
       # --- Node.js Setup for Backend & API/Cypress Tests ---
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Adjust to your project's Node.js version
-          cache: 'npm'
+          node-version: '20' # Specify your project's Node.js version
+          cache: 'npm' # Cache node_modules to speed up builds
 
       - name: Install Node.js Dependencies
-        run: npm ci
+        # This assumes your package.json is in the root of the repository
+        run: npm ci # 'npm ci' ensures clean, consistent installs based on package-lock.json
 
       # --- Python Setup for Robot Framework Tests ---
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # e.g., '3.9', '3.10', '3.11'
+          python-version: '3.x' # Use a specific stable Python 3 version, e.g., '3.9', '3.10', '3.11'
 
       - name: Install Robot Framework and Libraries
         run: |
           python -m pip install --upgrade pip
           pip install robotframework robotframework-seleniumlibrary
-          # Add any other pip installs for Robot Framework libraries here if needed
+          # Add any other Python/Robot Framework library installs here if needed by your tests
+          # e.g., pip install robotframework-requests
 
       # --- Start Backend Server ---
       - name: Start Backend Server
-        # Your server.js appears to be in the root directory.
+        # 'server.js' is located directly in the repository root as per your screenshot
         run: |
-          node server.js &
-          npx wait-on http://localhost:3001
+          node server.js & # Starts your server in the background
+          npx wait-on http://localhost:3001 # Waits until the server is listening
         env:
-          PORT: 3001 # Ensure this matches your server's listening port
+          PORT: 3001 # Make sure your server.js is configured to listen on this port
 
       # --- Run Jest API Tests (Supertest) ---
       - name: Run Jest API Tests
-        # The 'npm test:api' script (which should call 'jest') will automatically
-        # find jest.config.js and tests/apitests.test.js because Jest is configured
-        # to look for files based on your 'testMatch' or 'testRegex' patterns.
-        # Ensure your jest.config.js has something like:
-        # testMatch: ["**/tests/**/*.test.js"],
-        # OR collectCoverageFrom: ["server.js", "tests/**/*.js"]
-        run: npm run test:api -- --coverage
+        # This assumes your package.json has a script like "test:api": "jest --coverage"
+        # Jest (when run from the root) will find 'jest.config.js' and then
+        # locate 'tests/apitests.test.js' based on its 'testMatch' or 'testRegex' patterns.
+        run: npm run test:api
 
       # --- Run Cypress E2E Tests ---
-      - name: Run Cypress E2E Tests (using notes.cy.js)
+      - name: Run Cypress E2E Tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm start # or 'node server.js' if not in package.json script
-          wait-on: 'http://localhost:3001'
+          # Your 'npm start' script (e.g., "start": "node server.js") should be
+          # in your package.json, which would launch your backend if needed by Cypress.
+          start: npm start
+          wait-on: 'http://localhost:3001' # Waits for your backend
           browser: chrome
-          headed: false
-          # Explicitly target the spec file based on your screenshot
-          spec: 'remwaste_cypressaut/notes.cy.js'
-          # If you also want to run files in 'cypress/e2e/', you'd need another step or a pattern like 'cypress/e2e/**/*.cy.js,remwaste_cypressaut/**/*.cy.js'
-          # If 'remwaste_cypressaut' is meant to be part of the Cypress project, ensure your cypress.config.js includes it in its 'specPattern'.
+          headed: false # Run in headless mode (no visual browser UI)
+          # Explicitly specify the path to your Cypress test file
+          spec: 'remwaste_cypressaut/notes.cy.js' # Path relative to repository root
 
       # --- Run Robot Framework Tests ---
       - name: Run Robot Framework Tests
-        # Your 'rem_tests.robot' file is in the root directory.
-        run: robot rem_tests.robot
-        # If 'rem_tests.robot' were inside a folder like 'robot_tests/', the command would be:
-        # run: robot robot_tests/rem_tests.robot
+        # Your 'rem_tests.robot' file is located directly in the repository root.
+        run: robot rem_tests.robot # Directly execute the test suite
 
       # --- Archive All Test Reports ---
       - name: Archive Test Reports
-        if: always()
+        if: always() # Ensures this step runs even if previous test steps fail
         uses: actions/upload-artifact@v4
         with:
           name: all-test-reports
           path: |
-            junit-report/junit.xml # Jest JUnit report (assuming configured via jest-junit)
-            html-report/report.html # Jest HTML report (assuming configured via jest-html-reporters)
-            coverage/ # Jest code coverage report folder
-            output.xml # Default Robot Framework output XML
-            log.html # Default Robot Framework log HTML
-            report.html # Default Robot Framework report HTML
-            # Add Cypress report paths if generated outside the 'cypress' folder or need specific archiving
-            # e.g., cypress/reports/junit/ # For Cypress JUnit reports
-          retention-days: 7
+            # Paths for Jest reports (assuming default output directories configured in jest.config.js)
+            junit-report/junit.xml
+            html-report/report.html
+            coverage/
+            # Default Robot Framework report files (generated in the root where 'robot' command runs)
+            output.xml
+            log.html
+            report.html
+            # Add Cypress report paths if you have them configured outside the default Cypress results folder
+            # e.g., cypress/reports/junit/
+          retention-days: 7 # How long to keep these artifacts on GitHub
