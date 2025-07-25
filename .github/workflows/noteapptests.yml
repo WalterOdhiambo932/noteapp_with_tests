@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+          cache: 'npm' 
+
+      - name: Install Dependencies
+        run: npm ci 
+
+      - name: Start Backend Server (for API tests)
+        run: |
+          node server.js &
+          npx wait-on http://localhost:3001 # Wait for the server to be ready
+    
+        env:
+          PORT: 3001 
+
+      - name: Run Jest API Tests
+        run: npm test 
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start 
+          wait-on: 'http://localhost:3001' 
+          browser: chrome 
+          headed: false 
+
+       
+
+      - name: Archive Test Reports (Optional, but good practice)
+        if: always() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            junit-report/junit.xml
+            html-report/report.html
+            coverage/ # The entire coverage folder
+          retention-days: 7 
