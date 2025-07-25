@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.11.0 on win32)" generated="20250724 04:58:06.877" rpa="false" schemaversion="3">
+<suite id="s1" name="Rem Tests" source="C:\Users\WOODHIAMBO\OneDrive - SAFARICOM PLC\Desktop\UIAPIautomation\remwaste_selenium_robot_ui_tests\rem_tests.robot">
+<test id="s1-t1" name="setenviroment and open browswer" line="14">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.Edge.driver</arg>
+<arg>../../Driver/chromedriver.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20250724 04:58:07.167" level="INFO">Environment variable 'webdriver.Edge.driver' set to value '../../Driver/chromedriver.exe'.</msg>
+<status status="PASS" starttime="20250724 04:58:07.167" endtime="20250724 04:58:07.167"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url_uat}</arg>
+<arg>${browser}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250724 04:58:07.169" level="INFO">Opening browser 'Edge' to base url 'http://localhost:5173/'.</msg>
+<status status="PASS" starttime="20250724 04:58:07.167" endtime="20250724 04:58:10.420"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250724 04:58:10.422" endtime="20250724 04:58:10.450"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:07.166" endtime="20250724 04:58:10.450"/>
+</test>
+<test id="s1-t2" name="login to the page with Invalid credeintials" line="19">
+<kw name="Set Variable" library="BuiltIn">
+<var>${"username"}</var>
+<arg>//input[@id='username']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:10.452" level="INFO">${"username"} = //input[@id='username']</msg>
+<status status="PASS" starttime="20250724 04:58:10.451" endtime="20250724 04:58:10.452"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"password_text"}</var>
+<arg>//input[@id='password']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:10.452" level="INFO">${"password_text"} = //input[@id='password']</msg>
+<status status="PASS" starttime="20250724 04:58:10.452" endtime="20250724 04:58:10.452"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${"username"}</arg>
+<arg>${"password_text"}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250724 04:58:10.486" level="INFO">Element '//input[@id='username']' is displayed.</msg>
+<status status="PASS" starttime="20250724 04:58:10.452" endtime="20250724 04:58:10.487"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"username"}</arg>
+<arg>testuser</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:10.488" level="INFO">Typing text 'testuser' into text field '//input[@id='username']'.</msg>
+<status status="PASS" starttime="20250724 04:58:10.487" endtime="20250724 04:58:10.625"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"password_text"}</arg>
+<arg>testpass1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:10.627" level="INFO">Typing text 'testpass1' into text field '//input[@id='password']'.</msg>
+<status status="PASS" starttime="20250724 04:58:10.626" endtime="20250724 04:58:10.712"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Login']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:10.713" level="INFO">Clicking element '//button[normalize-space()='Login']'.</msg>
+<status status="PASS" starttime="20250724 04:58:10.713" endtime="20250724 04:58:10.770"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>failedlogin.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250724 04:58:10.930" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="failedlogin.png"&gt;&lt;img src="failedlogin.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250724 04:58:10.771" endtime="20250724 04:58:10.930"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:15.932" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:10.931" endtime="20250724 04:58:15.932"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:10.451" endtime="20250724 04:58:15.933"/>
+</test>
+<test id="s1-t3" name="login to the page with valid credeintials" line="33">
+<kw name="Set Variable" library="BuiltIn">
+<var>${"username"}</var>
+<arg>//input[@id='username']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:15.935" level="INFO">${"username"} = //input[@id='username']</msg>
+<status status="PASS" starttime="20250724 04:58:15.935" endtime="20250724 04:58:15.935"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"password_text"}</var>
+<arg>//input[@id='password']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:15.935" level="INFO">${"password_text"} = //input[@id='password']</msg>
+<status status="PASS" starttime="20250724 04:58:15.935" endtime="20250724 04:58:15.935"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${"username"}</arg>
+<arg>${"password_text"}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250724 04:58:15.956" level="INFO">Element '//input[@id='username']' is displayed.</msg>
+<status status="PASS" starttime="20250724 04:58:15.936" endtime="20250724 04:58:15.956"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"username"}</arg>
+<arg>testuser</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:15.957" level="INFO">Typing text 'testuser' into text field '//input[@id='username']'.</msg>
+<status status="PASS" starttime="20250724 04:58:15.956" endtime="20250724 04:58:16.041"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"password_text"}</arg>
+<arg>testpass</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:16.041" level="INFO">Typing text 'testpass' into text field '//input[@id='password']'.</msg>
+<status status="PASS" starttime="20250724 04:58:16.041" endtime="20250724 04:58:16.128"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Login']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:16.129" level="INFO">Clicking element '//button[normalize-space()='Login']'.</msg>
+<status status="PASS" starttime="20250724 04:58:16.129" endtime="20250724 04:58:16.179"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>//h2[normalize-space()='Welcome!']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250724 04:58:16.179" endtime="20250724 04:58:16.205"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>validlogin.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250724 04:58:16.414" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="validlogin.png"&gt;&lt;img src="validlogin.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250724 04:58:16.206" endtime="20250724 04:58:16.414"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:15.935" endtime="20250724 04:58:16.414"/>
+</test>
+<test id="s1-t4" name="add new item in the note app" line="46">
+<kw name="Set Variable" library="BuiltIn">
+<var>${"title"}</var>
+<arg>//input[@id='noteTitle']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:16.415" level="INFO">${"title"} = //input[@id='noteTitle']</msg>
+<status status="PASS" starttime="20250724 04:58:16.414" endtime="20250724 04:58:16.415"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"content"}</var>
+<arg>//textarea[@id='noteContent']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:16.415" level="INFO">${"content"} = //textarea[@id='noteContent']</msg>
+<status status="PASS" starttime="20250724 04:58:16.415" endtime="20250724 04:58:16.415"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"title"}</arg>
+<arg>fist walter note</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:16.416" level="INFO">Typing text 'fist walter note' into text field '//input[@id='noteTitle']'.</msg>
+<status status="PASS" starttime="20250724 04:58:16.415" endtime="20250724 04:58:16.508"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"content"}</arg>
+<arg>first content</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:16.510" level="INFO">Typing text 'first content' into text field '//textarea[@id='noteContent']'.</msg>
+<status status="PASS" starttime="20250724 04:58:16.510" endtime="20250724 04:58:16.581"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Add Note']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:16.582" level="INFO">Clicking element '//button[normalize-space()='Add Note']'.</msg>
+<status status="PASS" starttime="20250724 04:58:16.582" endtime="20250724 04:58:16.633"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:18.634" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:16.634" endtime="20250724 04:58:18.634"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>//h4[normalize-space()='fist walter note']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250724 04:58:18.635" endtime="20250724 04:58:18.655"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:16.414" endtime="20250724 04:58:18.656"/>
+</test>
+<test id="s1-t5" name="add new item in the note app" line="57">
+<kw name="Set Variable" library="BuiltIn">
+<var>${"title2"}</var>
+<arg>//input[@id='noteTitle']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:18.659" level="INFO">${"title2"} = //input[@id='noteTitle']</msg>
+<status status="PASS" starttime="20250724 04:58:18.659" endtime="20250724 04:58:18.659"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"content2"}</var>
+<arg>//textarea[@id='noteContent']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:18.660" level="INFO">${"content2"} = //textarea[@id='noteContent']</msg>
+<status status="PASS" starttime="20250724 04:58:18.660" endtime="20250724 04:58:18.660"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"title2"}</arg>
+<arg>second walter note</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:18.662" level="INFO">Typing text 'second walter note' into text field '//input[@id='noteTitle']'.</msg>
+<status status="PASS" starttime="20250724 04:58:18.661" endtime="20250724 04:58:18.754"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"content2"}</arg>
+<arg>second content</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:18.756" level="INFO">Typing text 'second content' into text field '//textarea[@id='noteContent']'.</msg>
+<status status="PASS" starttime="20250724 04:58:18.756" endtime="20250724 04:58:18.830"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Add Note']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:18.830" level="INFO">Clicking element '//button[normalize-space()='Add Note']'.</msg>
+<status status="PASS" starttime="20250724 04:58:18.830" endtime="20250724 04:58:18.874"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:20.875" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:18.875" endtime="20250724 04:58:20.875"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>//h4[normalize-space()='second walter note']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250724 04:58:20.876" endtime="20250724 04:58:20.895"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>addnewitem.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250724 04:58:21.009" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="addnewitem.png"&gt;&lt;img src="addnewitem.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250724 04:58:20.896" endtime="20250724 04:58:21.010"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:18.658" endtime="20250724 04:58:21.010"/>
+</test>
+<test id="s1-t6" name="Edit item in the note app" line="68">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Edit']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:21.013" level="INFO">Clicking element '//button[normalize-space()='Edit']'.</msg>
+<status status="PASS" starttime="20250724 04:58:21.013" endtime="20250724 04:58:21.073"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:26.075" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:21.074" endtime="20250724 04:58:26.075"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"title3"}</var>
+<arg>//input[@id='noteTitle']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:26.076" level="INFO">${"title3"} = //input[@id='noteTitle']</msg>
+<status status="PASS" starttime="20250724 04:58:26.076" endtime="20250724 04:58:26.076"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${"content3"}</var>
+<arg>//textarea[@id='noteContent']</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250724 04:58:26.077" level="INFO">${"content3"} = //textarea[@id='noteContent']</msg>
+<status status="PASS" starttime="20250724 04:58:26.077" endtime="20250724 04:58:26.077"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"title3"}</arg>
+<arg>edited walter note</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:26.078" level="INFO">Typing text 'edited walter note' into text field '//input[@id='noteTitle']'.</msg>
+<status status="PASS" starttime="20250724 04:58:26.077" endtime="20250724 04:58:26.179"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${"content3"}</arg>
+<arg>edited content</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:26.180" level="INFO">Typing text 'edited content' into text field '//textarea[@id='noteContent']'.</msg>
+<status status="PASS" starttime="20250724 04:58:26.180" endtime="20250724 04:58:26.258"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Update Note']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:26.259" level="INFO">Clicking element '//button[normalize-space()='Update Note']'.</msg>
+<status status="PASS" starttime="20250724 04:58:26.258" endtime="20250724 04:58:26.309"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:28.311" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:26.310" endtime="20250724 04:58:28.311"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>//h4[normalize-space()='edited walter note']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250724 04:58:28.311" endtime="20250724 04:58:28.331"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>edititem.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250724 04:58:28.437" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="edititem.png"&gt;&lt;img src="edititem.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250724 04:58:28.332" endtime="20250724 04:58:28.437"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:21.012" endtime="20250724 04:58:28.438"/>
+</test>
+<test id="s1-t7" name="Delete item in the note app" line="81">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[normalize-space()='Delete']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250724 04:58:28.442" level="INFO">Clicking element '//button[normalize-space()='Delete']'.</msg>
+<status status="PASS" starttime="20250724 04:58:28.441" endtime="20250724 04:58:28.502"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250724 04:58:33.503" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20250724 04:58:28.502" endtime="20250724 04:58:33.503"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>deleteitem.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250724 04:58:33.623" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="deleteitem.png"&gt;&lt;img src="deleteitem.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250724 04:58:33.504" endtime="20250724 04:58:33.623"/>
+</kw>
+<status status="PASS" starttime="20250724 04:58:28.441" endtime="20250724 04:58:33.624"/>
+</test>
+<status status="PASS" starttime="20250724 04:58:06.880" endtime="20250724 04:58:33.626"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="0" skip="0" id="s1" name="Rem Tests">Rem Tests</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20250724 04:58:18.657" level="WARN">Multiple tests with name 'add new item in the note app' executed in suite 'Rem Tests'.</msg>
+</errors>
+</robot>

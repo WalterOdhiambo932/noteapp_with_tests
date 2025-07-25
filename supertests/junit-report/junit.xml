@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="1.423">
+  <testsuite name="API Test Suite for Note Management Backend" errors="0" failures="0" skipped="0" timestamp="2025-07-25T00:34:38" time="1.26" tests="19">
+    <testcase classname="API Test Suite for Note Management Backend › Authentication (POST /login) Positive: Successful login with valid credentials - should return 200 and a token" name="API Test Suite for Note Management Backend › Authentication (POST /login) Positive: Successful login with valid credentials - should return 200 and a token" time="0.011" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with invalid credentials - should return 401" name="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with invalid credentials - should return 401" time="0.006" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with missing username - should return 401" name="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with missing username - should return 401" time="0.007" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with missing password - should return 401" name="API Test Suite for Note Management Backend › Authentication (POST /login) Negative: Failed login with missing password - should return 401" time="0.006" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Creation (POST /items) Positive: Successfully creating a new item - should return 201 and the new item" name="API Test Suite for Note Management Backend › Item Creation (POST /items) Positive: Successfully creating a new item - should return 201 and the new item" time="0.011" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item with missing title - should return 400" name="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item with missing title - should return 400" time="0.008" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item with missing content - should return 400" name="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item with missing content - should return 400" time="0.007" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item without authentication - should return 401" name="API Test Suite for Note Management Backend › Item Creation (POST /items) Negative: Attempting to create an item without authentication - should return 401" time="0.006" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Positive: Fetching all items - should retrieve all items for an authenticated user" name="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Positive: Fetching all items - should retrieve all items for an authenticated user" time="0.007" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Negative: Fetching all items - should return 401 if no token is provided" name="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Negative: Fetching all items - should return 401 if no token is provided" time="0.006" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Negative: Fetching all items - should return 401 for an invalid token" name="API Test Suite for Note Management Backend › Items Retrieval (GET /items, GET /items/:id) Negative: Fetching all items - should return 401 for an invalid token" time="0.007" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Positive: Successfully updating an existing item - should return 200 and the updated item" name="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Positive: Successfully updating an existing item - should return 200 and the updated item" time="0.006" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update a non-existent item - should return 404" name="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update a non-existent item - should return 404" time="0.01" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item with missing title - should return 400" name="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item with missing title - should return 400" time="0.004" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item with missing content - should return 400" name="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item with missing content - should return 400" time="0.007" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item without authentication - should return 401" name="API Test Suite for Note Management Backend › Item Update (PUT /items/:id) Negative: Attempting to update an item without authentication - should return 401" time="0.005" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Positive: Successfully deleting an existing item - should return 204 No Content" name="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Positive: Successfully deleting an existing item - should return 204 No Content" time="0.018" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Negative: Attempting to delete a non-existent item - should return 404" name="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Negative: Attempting to delete a non-existent item - should return 404" time="0.013" file="apitests.test.js">
+    </testcase>
+    <testcase classname="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Negative: Attempting to delete an item without authentication - should return 401" name="API Test Suite for Note Management Backend › Item Deletion (DELETE /items/:id) Negative: Attempting to delete an item without authentication - should return 401" time="0.011" file="apitests.test.js">
+    </testcase>
+  </testsuite>
+</testsuites>

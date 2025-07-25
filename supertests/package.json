@@ -1,0 +1,20 @@
+{
+  "name": "supertests",
+  "version": "1.0.0",
+  "main": "apitests.test.js",
+"scripts": {
+    "start": "node index.js", 
+     "test": "jest --json --outputFile=test-results.json" ,
+      "test:coverage": "jest --coverage"           
+  },
+  "devDependencies": {
+    "jest": "^<some_version>",
+    "supertest": "^<some_version>",
+    "jest-junit": "^<some_version>",       
+    "jest-html-reporters": "^<some_version>" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
