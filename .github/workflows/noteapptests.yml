@@ -1,59 +1,98 @@
-name: CI/CD Pipeline
+name: NoteApp Full Test Pipeline
 
 on:
   push:
     branches:
       - main
+      - master # Include master if relevant
       - develop
   pull_request:
     branches:
       - main
+      - master
       - develop
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest # Good for Node.js, Python (Robot Framework), and browsers
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
 
+      # --- Node.js Setup for Backend & API/Cypress Tests ---
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' 
-          cache: 'npm' 
+          node-version: '20' # Use your Node.js version
+          cache: 'npm' # Cache npm dependencies
 
-      - name: Install Dependencies
-        run: npm ci 
+      - name: Install Node.js Dependencies
+        run: npm ci
 
-      - name: Start Backend Server (for API tests)
+      # --- Python Setup for Robot Framework Tests ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Use a specific Python 3 version, e.g., '3.9' or '3.10'
+
+      - name: Install Robot Framework and Libraries
         run: |
+          python -m pip install --upgrade pip
+          pip install robotframework robotframework-seleniumlibrary # Install core RF and SeleniumLibrary
+          # If you have other custom Robot Framework libraries, install them here
+          # pip install your-custom-rf-library
+
+      # --- Start Backend Server ---
+      - name: Start Backend Server
+        run: |
+          # Assuming server.js is in the root. Adjust path if it's nested (e.g., 'node backend/server.js &')
           node server.js &
           npx wait-on http://localhost:3001 # Wait for the server to be ready
-    
         env:
-          PORT: 3001 
+          PORT: 3001 # Ensure this matches your server.js port
 
-      - name: Run Jest API Tests
-        run: npm test 
+      # --- Run Jest API Tests ---
+      - name: Run Jest API Tests (Supertest)
+        # Assumes 'npm test:api' or 'npm test' (if it only runs Jest)
+        run: npm run test:api # Or 'npm test -- --coverage' if 'npm test' is mapped to jest only
+
+      # --- Run Cypress E2E Tests ---
       - name: Run Cypress E2E Tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm start 
-          wait-on: 'http://localhost:3001' 
-          browser: chrome 
-          headed: false 
+          # `start` command is optional here since we already started the server above.
+          # But it's good practice to provide it if Cypress needs to manage server startup.
+          start: npm start # This script should launch your backend if not already running
+          wait-on: 'http://localhost:3001' # Wait for backend to be ready
+          browser: chrome
+          headed: false # Run Cypress in headless mode
+          # record: true # Uncomment to record tests to Cypress Cloud
+          # key: ${{ secrets.CYPRESS_RECORD_KEY }} # Store your Cypress record key as a GitHub Secret
+          spec: 'remwaste_cypressaut/notes.cy.js' # Explicitly run this spec file
 
-       
+      # --- Run Robot Framework Tests ---
+      - name: Run Robot Framework Tests
+        # Ensure the 'robot' command is in PATH (handled by pip install).
+        # Your rem_tests.robot file is in the root, so direct command works.
+        run: robot rem_tests.robot
+        # If your robot tests need a browser, ensure the appropriate driver is available
+        # The 'ubuntu-latest' runner usually has Chrome and Firefox pre-installed.
 
-      - name: Archive Test Reports (Optional, but good practice)
-        if: always() 
+      # --- Archive All Test Reports ---
+      - name: Archive Test Reports
+        if: always() # Upload artifacts even if tests fail
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: all-test-reports
           path: |
-            junit-report/junit.xml
-            html-report/report.html
-            coverage/ # The entire coverage folder
-          retention-days: 7 
+            junit-report/junit.xml # Jest JUnit report
+            html-report/report.html # Jest HTML report
+            coverage/ # Jest code coverage report
+            # Robot Framework reports (default output dir is current dir)
+            output.xml
+            log.html
+            report.html
+            # If Cypress generates specific reports, add their paths here
+            # e.g., cypress/results/
+          retention-days: 7
