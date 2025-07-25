@@ -1,5 +1,5 @@
 **DOCUMENTATION/TEST PLAN/ASSUMPTIONS/INSTALLATION INSTRUCTIONS**
-
+NB: All results screenshots are in folder "pics_and_screenshots_selenium"
 
 **Notes Web Application Testing Project**
 This project demonstrates automated testing for a simple web application consisting of a React frontend and a Node.js backend API.
